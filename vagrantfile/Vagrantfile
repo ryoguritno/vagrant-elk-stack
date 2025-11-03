@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Use opensuse machine image
+  config.vm.box = "generic/debian12"
+  config.vm.box_version = "4.3.12"
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.56.12"
+
+  # Forward ports to access services from the host machine
+  config.vm.network "forwarded_port", guest: 9200, host: 9200
+  config.vm.network "forwarded_port", guest: 5601, host: 5601
+
+  # Define the resources for the virtualbox
+  config.vm.provider "virtualbox" do |vb|
+    vb.cpus = 4
+    vb.memory = "6048"
+    vb.name = "medium-vagrant-elk-stack"
+  end
+
+  # Run some setup script to install elk-stack on he VM
+  config.vm.synced_folder "../opensearch-docker-compose", "/home/vagrant/opensearch-docker-compose"
+  config.vm.synced_folder "../manifests", "/home/vagrant/manifests"
+  config.vm.provision "elk provision shell script", type: "shell",
+      path: "elk.sh"
+end

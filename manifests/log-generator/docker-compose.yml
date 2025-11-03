@@ -1,0 +1,19 @@
+
+services:
+  log-generator:
+    build: .
+    container_name: log-generator
+    volumes:
+      - ./sample_logs.log:/app/sample_logs.log
+    networks:
+      - elk
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+networks:
+  elk:
+    name: elk
+    external: true

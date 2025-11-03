@@ -1,0 +1,24 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/lib/docker/containers/*/*.log
+  json.keys_under_root: true
+  json.add_error_key: true
+
+output.elasticsearch:
+  hosts: ["https://os01:9200", "https://os02:9200", "https://os03:9200"]
+  username: "admin"
+  password: "admin"
+  ssl:
+    verification_mode: "certificate"
+    certificate_authorities: ["/usr/share/filebeat/certs/ca/ca.pem"]
+
+# Disable ILM for OpenSearch
+setup.ilm.enabled: false
+setup.template.enabled: true
+setup.template.name: "filebeat"
+setup.template.pattern: "filebeat-*"
+
+# Simple index naming
+output.elasticsearch.index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
