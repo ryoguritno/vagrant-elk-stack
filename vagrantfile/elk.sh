@@ -36,8 +36,8 @@ fi
 echo "**** Starting OpenSearch cluster with Docker Compose"
 docker-compose up -d
 
-echo "**** Waiting 30 seconds for cluster to be ready..."
-sleep 30
+echo "**** Waiting 240 seconds for cluster to be ready..."
+sleep 240
 
 echo "**** Initializing OpenSearch security"
 docker-compose exec os01 bash -c "chmod +x plugins/opensearch-security/tools/securityadmin.sh && bash plugins/opensearch-security/tools/securityadmin.sh -cd config/opensearch-security -icl -nhnv -cacert config/certificates/ca/ca.pem -cert config/certificates/ca/admin.pem -key config/certificates/ca/admin.key -h os01"

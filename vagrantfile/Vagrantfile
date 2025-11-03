@@ -17,13 +17,13 @@ Vagrant.configure("2") do |config|
 
   # Define the resources for the virtualbox
   config.vm.provider "virtualbox" do |vb|
-    vb.cpus = 4
-    vb.memory = "6048"
-    vb.name = "medium-vagrant-elk-stack"
+    vb.cpus = 3
+    vb.memory = "5048"
+    vb.name = "medium-vagrant-opensearch-stack"
   end
 
   # Run some setup script to install elk-stack on he VM
   config.vm.synced_folder "..", "/home/vagrant"
-  config.vm.provision "elk provision shell script", type: "shell",
+  config.vm.provision "OpenSearch provision shell script", type: "shell",
       path: "elk.sh"
 end
