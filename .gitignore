@@ -1,3 +1,4 @@
 # general
 #
 vagrantfile/.vagrant
+.env
