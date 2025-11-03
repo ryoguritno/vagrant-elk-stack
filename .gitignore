@@ -2,3 +2,4 @@
 #
 vagrantfile/.vagrant
 .env
+certs/*
