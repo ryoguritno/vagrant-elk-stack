@@ -23,9 +23,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Run some setup script to install elk-stack on he VM
-  config.vm.synced_folder "..", "/vagrant"
-  config.vm.synced_folder "../opensearch-docker-compose", "/home/vagrant/opensearch-docker-compose"
-  config.vm.synced_folder "../manifests", "/home/vagrant/manifests"
+  config.vm.synced_folder "..", "/home/vagrant"
   config.vm.provision "elk provision shell script", type: "shell",
       path: "elk.sh"
 end
