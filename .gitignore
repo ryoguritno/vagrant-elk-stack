@@ -3,3 +3,5 @@
 vagrantfile/.vagrant
 .env
 certs/*
+.bash_history
+.viminfo
