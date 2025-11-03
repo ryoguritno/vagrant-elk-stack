@@ -5,3 +5,4 @@ USER root
 COPY certs /usr/share/filebeat/certs/
 RUN chown -R root:root /usr/share/filebeat/certs     
 RUN chown root:root /usr/share/filebeat/filebeat.yml
+RUN chmod 644 /usr/share/filebeat/filebeat.yml

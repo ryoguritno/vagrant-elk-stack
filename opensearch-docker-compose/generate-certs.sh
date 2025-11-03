@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Generate certificates for your OpenSearch cluster
 
 OPENDISTRO_DN="/C=ID/ST=IDF/L=JAKARTA/O=ARKELO" # Edit here and in opensearch.yml
